@@ -6,7 +6,7 @@
 <ul>
 
     {% for p in meeting_list %} 
-    <li>{{% p.meetingname  %}}</li>
+    <li><a href="{% url 'detail' id=p.id %)"> {{p.meetingname  %}}</a></li>
 {% endfor %} 
 </ul> 
 
