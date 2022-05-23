@@ -7,7 +7,7 @@ class Meeting(models.Model):
     meetingtitle=models.CharField(max_length=255)
     meetingdate=models.DateField()
     meetingtime=models.DateTimeField()
-    meetinglocation=models.DateField()
+    meetinglocation=models.CharField(max_length=255)
     meetingagenda=models.TextField()
 
     def __str__(self):
@@ -63,7 +63,7 @@ class Event(models.Model):
         return self.discount
 
         #needs work on discount price
-        #something to do with the 
+        #something to do with the \
 
     def discountPrice(self):
         disc=self.discountAmount()

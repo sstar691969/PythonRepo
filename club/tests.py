@@ -1,10 +1,11 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
-from .models import Meeting, MeetingMinutes, Resource, Event
+from .models import Meeting, Meeting_Minutes, Resource, Event
 import datetime
+from .forms import MeetingForm
 
 # Create your tests here.
-class MeetingTest(TestCase)
+class MeetingTest(TestCase):
     def setUp(self):
         self.title=Meeting(titlename='Lenovo Laptop')
 
@@ -12,25 +13,41 @@ class MeetingTest(TestCase)
         self.assertEqual(str(self.title), 'Lenovo Laptop')
 
     def test_tablename(self):
-        self.assertEqual(str(Meeting._meta.db_table) "meeting"
+        self.assertEqual(str(Meeting._meta.db_table), "meeting")
 
     
-class MeetingTest(TestCase):
-    def setup(self):
-        self.title= Meeting(titlename='Laptop')
-        self.user= Username (username='user1')
-        self.meeting= Meeting(meetingname='Lenovo',productype=self.type, user=self.user, dateentered=datetime.date(2022,5,22),price=1200.99,product url='http://www.lenovo.com', description="lenovo laptop")
 
-    def test_string(self):
-        self.assertEqual(str(self.product)), 'Lenovo')
 
-    def test_discount(self):
-        dis = self.meeting.price * .05
-        self.assertEqual(self.meeting.discountamount(),disc)
+class NewMeetingForm(TestCase):
+        #valid form data
+    def test_meetingform(self):
+        data={
+            'meetingname':'surface',
+            'meetingdate' : 'laptop',
+            'meetingtime':'5:00 pm', 
+            'meetinglocation': 'Seattle',
+            'meetingagenda': 'retirement 41k',
+             }
 
-    def test_discountamount(self):
-        disc=self.meeting.price *  (1)
-        self.assertEqual(self.meeting.discountPrice(),disc)
+        
+        form=MeetingForm(data)
+        self.assertTrue(form.is_valid)
+
+    def test_MeetingForm_Invalid(self):
+        data={
+            'meetingname':'surface',
+            'meetingdate' : 'laptop',
+            'meetingtime':'5:00 pm', 
+            'meetinglocation': 'Seattle',
+            'meetingagenda': 'retirement 41k',
+             }
+
+        form=MeetingForm(data)
+        self.assertFalse(form.is_valid)
+
+
+
+
 
 
 
