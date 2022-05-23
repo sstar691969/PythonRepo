@@ -57,6 +57,20 @@ class Event(models.Model):
     description=models.TextField(max_length=255)
     userid=models.ManyToManyField(User)
 
+
+    def discountAmount(self):
+        self.discount=self.price * .05
+        return self.discount
+
+        #needs work on discount price
+        #something to do with the 
+
+    def discountPrice(self):
+        disc=self.discountAmount()
+        self.discountedPrice=self.price.disc
+
+
+
     def __str__(self):
         return self.eventtitle
 
